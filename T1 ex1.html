@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Tp1</title>
+</head>
+<body>  
+
+ 
+        <h1>Tableau</h1>
+        <h2>Tableau de depart : </h2>
+        
+<table border="1" >
+    <tr class="Tableau1">
+
+    </tr>
+</table>
+
+
+<h2 class="superieur"></h2>
+<h2 class="moyenne"></h2>
+<input type="button" value="trier" onclick="trier()">
+    <h2>Tableau Triee : </h2>
+
+    <table border="1" >
+        <tr class="Tableau2">
+        </tr>
+    </table>
+
+  <br>
+    <input type="button" value="Donner valeur a rechercher " onclick="recherche()">
+    <h2 class="recherche"></h2>
+
+    <input type="button" value=" Maximum Valeur " onclick="maximum()">
+    
+        <h1 class="maximum"></h1>
+        
+
+</body>    
+<script  language="javascript">
+
+
+let x=prompt('saisir la taille du tableau');
+var t=new Array(x);
+let tab="";
+let k;
+
+let sup=0;
+let s=0;
+for(let i=0;i <= x;i++){
+    tab=tab+"<td>";
+   do{
+   k = parseInt(prompt('saisire une case'));
+   }while(k<0);
+if(k>10){
+    sup++;
+}
+s=s+k;
+t[i]=k;
+tab = tab + k + "</td>";
+console.log(t[i]);
+console.log(tab);
+document.querySelector('.Tableau1').innerHTML=tab;
+document.querySelector('.superieur').innerHTML= "le nombre des notes superieur a 10 : " + sup;
+document.querySelector('.moyenne').innerHTML= "le moyenne des notes : "+ s/x;
+
+
+function maximum()
+{
+   let max = t[0];
+   for( let i=1 ;i<t.length;i++)
+{
+    if (t[i]>max){
+           max=t[i];
+    }
+ 
+}
+document.querySelector('.maximum').innerHTML= "la valeur maximum  est : " + max;
+}
+
+
+function recherche(){
+  
+   let test=0;
+   
+   let x = parseInt(prompt('saisie note a recherecher'));
+
+for(let i=0;i<t.length;i++){
+    if(t[i]== x ){
+        let p=t.indexOf(x);
+        p++;
+ document.querySelector('.recherche').innerHTML="le indice de valeur rechercher est :" + p;
+
+ break;
+    }
+    if(i-1==t.length){
+test=1;
+    }
+
+}
+if(test==1){
+     document.querySelector('.recherche').innerHTML=tab="note introuvable";
+}
+}
+
+
+
+function trier(){
+    var h;
+    let x;
+do{
+h=0;
+for(let j = 0; j < t.length-1; j++){
+    
+        if(t[j] > t[j+1]){
+         x = t[j];
+            t[j] = t[j+1];
+            t[j+1] = x;
+            h=1;
+        }
+    }
+} while(h==1);
+
+ let tab2="";
+t.forEach((v)=>{
+    tab2=tab2+"<td>";
+    tab2 = tab2 + v + "</td>";
+});
+document.querySelector('.Tableau2').innerHTML=tab2;
+
+}
+
+
+
+
+
+
+
+
+
+}
+
+
+</script>
+
+</html>
